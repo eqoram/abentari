@@ -54,14 +54,18 @@
                     class="border p-2 mb-4 w-full"
                     outlined
                     rounded
+                    :rules="[
+                      (val) => /^\d*$/.test(val) || 'Only numbers allowed',
+                      (val) => val.length <= 6 || 'Only 6 digits max',
+                    ]"
                   />
-                  <q-btn
+                  <!-- <q-btn
                     rounded
                     @click="verifyCode"
                     class="bg-primary text-white full-width q-mt-md q-mb-md"
                   >
                     Verify Code
-                  </q-btn>
+                  </q-btn> -->
                 </div>
               </div>
             </div>
@@ -87,7 +91,7 @@ import ButtonBack from 'components/button-back.vue';
 import BlankBar from 'components/blank-bar.vue';
 import TabBar from 'components/tab-bar.vue';
 import { copyToClipboard, useQuasar } from 'quasar';
-import { defineComponent, ref, defineAsyncComponent, onMounted } from 'vue';
+import { defineComponent, ref, defineAsyncComponent, onMounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { supabase, supabaseUrl, supabaseAnonKey } from '../helpers/supabase';
 var $q;
@@ -109,8 +113,19 @@ export default defineComponent({
     const lmfa_enabled = ref(true);
     const lmfa_allowed = ref(false);
 
+    const qrCode = ref(null);
+    const code = ref('');
+    const error = ref('');
+    const success = ref(false);
+
     onMounted(() => {
       checkIfUserIsLoggedIn();
+    });
+
+    watch(code, (newVal) => {
+      if (newVal && newVal.length === 6) {
+        verifyCode();
+      }
     });
 
     function checkIfUserIsLoggedIn() {
@@ -193,11 +208,6 @@ export default defineComponent({
         }
       })();
     }
-
-    const qrCode = ref(null);
-    const code = ref('');
-    const error = ref('');
-    const success = ref(false);
 
     const enrollMFA = async () => {
       error.value = '';
