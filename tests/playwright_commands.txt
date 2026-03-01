@@ -1,0 +1,15 @@
+PJOBID='local_'$(date +%s) PURL="http://localhost:9200" PSUPABASEURL="http://127.0.0.1:54321" PSUPABASEKEY="sb_publishable_ACJWlzQHlZjBrEguHvfOxg_3BJgxAaH" PADMINEMAIL="pw_admin@abentari.invalid" PADMINPASSWORD="7V2ZN1GHlbag6zo8ZvuZ" PUSEREMAIL="pw_user@abentari.invalid" PUSERPASSWORD="3R4UB9UBvnui4zo2IvuN" npx playwright test --project='firefox'
+
+// ignore all security tests
+EXCLUDE_FILES="tests/4320_security_object_admin.spec.js,tests/4330_security_object_user_owner.spec.js,tests/4340_security_object_user_all.spec.js,tests/4350_security_object_user_unauth.spec.js,tests/4360_security_object_user_setuplimited.spec.js,tests/4370_security_files.spec.js,tests/4420_security_general.spec.js,tests/4422_security_setup_settings.spec.js,tests/4444_security_setup.spec.js" PJOBID='local_'$(date +%s) PURL="http://localhost:9200" PSUPABASEURL="http://127.0.0.1:54321" PSUPABASEKEY="sb_publishable_ACJWlzQHlZjBrEguHvfOxg_3BJgxAaH" PADMINEMAIL="pw_admin@abentari.invalid" PADMINPASSWORD="7V2ZN1GHlbag6zo8ZvuZ" PUSEREMAIL="pw_user@abentari.invalid" PUSERPASSWORD="3R4UB9UBvnui4zo2IvuN" npx playwright test --project='firefox'
+
+// ignore all security and delete fields+objects tests
+EXCLUDE_FILES="tests/4940_admin_fields_delete.spec.js,tests/4950_admin_objects_delete.spec.js,tests/4320_security_object_admin.spec.js,tests/4330_security_object_user_owner.spec.js,tests/4340_security_object_user_all.spec.js,tests/4350_security_object_user_unauth.spec.js,tests/4360_security_object_user_setuplimited.spec.js,tests/4370_security_files.spec.js,tests/4420_security_general.spec.js,tests/4422_security_setup_settings.spec.js,tests/4444_security_setup.spec.js" PJOBID='local_'$(date +%s) PURL="http://localhost:9200" PSUPABASEURL="http://127.0.0.1:54321" PSUPABASEKEY="sb_publishable_ACJWlzQHlZjBrEguHvfOxg_3BJgxAaH" PADMINEMAIL="pw_admin@abentari.invalid" PADMINPASSWORD="7V2ZN1GHlbag6zo8ZvuZ" PUSEREMAIL="pw_user@abentari.invalid" PUSERPASSWORD="3R4UB9UBvnui4zo2IvuN" npx playwright test --project='firefox'
+
+// only security tests
+EXCLUDE_FILES="tests/4120_admin_profiles_create.spec.js,tests/4130_admin_users_create.spec.js,tests/4140_admin_objects_create.spec.js,tests/4150_admin_fields_create.spec.js,tests/4160_admin_others_create.spec.js,tests/4220_admin_records_create.spec.js,tests/4640_admin_records_update.spec.js,tests/4740_admin_records_delete.spec.js,tests/4920_admin_profiles_delete.spec.js,tests/4930_admin_users_delete.spec.js,tests/4940_admin_fields_delete.spec.js,tests/4950_admin_objects_delete.spec.js" PJOBID='local_'$(date +%s) PURL="http://localhost:9200" PSUPABASEURL="http://127.0.0.1:54321" PSUPABASEKEY="sb_publishable_ACJWlzQHlZjBrEguHvfOxg_3BJgxAaH" PADMINEMAIL="pw_admin@abentari.invalid" PADMINPASSWORD="7V2ZN1GHlbag6zo8ZvuZ" PUSEREMAIL="pw_user@abentari.invalid" PUSERPASSWORD="3R4UB9UBvnui4zo2IvuN" npx playwright test --project='firefox'
+
+//things to delete (supabase db reset)
+//user
+//profile
+//objects

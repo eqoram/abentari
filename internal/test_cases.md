@@ -1,0 +1,11 @@
+- setup
+  - deploy
+  - retrieve
+- normal user
+  - app
+  - object
+  - page
+- guest user
+  - app
+  - object
+  - page

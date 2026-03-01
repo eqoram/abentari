@@ -1,0 +1,31 @@
+#include
+d2b79cb0-6ad5-4e7d-9fda-99b4941d4b8a;ea3a8736-5f30-4a5e-a98e-ef8eff71344e;34b3e16d-1662-40bd-b69d-f89b88bcd7e5
+
+# csql
+DROP TRIGGER IF EXISTS c_setname
+ON public.c_objectwithoutname__d2b79cb0_6ad5_4e7d_9fda_99b4941d4b8a;
+
+DROP FUNCTION IF EXISTS c_setnamefunction();
+
+CREATE OR REPLACE FUNCTION public.c_setnamefunction()
+RETURNS TRIGGER set search_path = '' AS $$
+BEGIN
+    IF (TG_OP = 'INSERT') THEN
+        NEW.name := NOW();
+    ELSIF (TG_OP = 'UPDATE') THEN
+        IF((OLD.name <> NEW.name)) THEN
+            raise exception 'NAME CANNOT BE UDPATED';
+        END IF;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER c_setname
+BEFORE INSERT OR UPDATE ON public.c_objectwithoutname__d2b79cb0_6ad5_4e7d_9fda_99b4941d4b8a
+FOR EACH ROW
+EXECUTE FUNCTION public.c_setnamefunction();
+
+# deploy
+{"objects":[{"id":"d2b79cb0-6ad5-4e7d-9fda-99b4941d4b8a","created_at":"2026-01-05T13:03:24.240734+00:00","created_by":"4ba98607-d109-449c-9773-250c592e4069","modified_at":"2026-01-05T13:04:17.728825+00:00","modified_by":"4ba98607-d109-449c-9773-250c592e4069","description":null,"api_name":"c_objectwithoutname__d2b79cb0_6ad5_4e7d_9fda_99b4941d4b8a","name":"objectwithoutname","fields_selected":["ea3a8736-5f30-4a5e-a98e-ef8eff71344e"],"show_id":true,"show_createdby":false,"show_createdat":false,"show_modifiedby":false,"show_modifiedat":false,"show_owner":false,"show_name":false,"relations":null,"history":true}],"fields":[{"id":"ea3a8736-5f30-4a5e-a98e-ef8eff71344e","created_at":"2026-01-05T13:03:50.491265+00:00","created_by":"4ba98607-d109-449c-9773-250c592e4069","modified_at":"2026-01-05T13:03:50.491265+00:00","modified_by":"4ba98607-d109-449c-9773-250c592e4069","description":null,"api_name":"c_field1__ea3a8736_5f30_4a5e_a98e_ef8eff71344e","name":"field1","required":true,"type":"text","relationname":null,"relation_id":null,"relation_apiname":null,"picklist_values":null,"parent_id":"d2b79cb0-6ad5-4e7d-9fda-99b4941d4b8a","parent_apiname":"c_objectwithoutname__d2b79cb0_6ad5_4e7d_9fda_99b4941d4b8a","display":"","is_standard":false}],"csql":[{"id":"34b3e16d-1662-40bd-b69d-f89b88bcd7e5","created_at":"2026-01-05T13:16:57.394082+00:00","created_by":"4ba98607-d109-449c-9773-250c592e4069","modified_at":"2026-01-05T13:37:31.784654+00:00","modified_by":"4ba98607-d109-449c-9773-250c592e4069","description":null,"api_name":"c_nametrigge__34b3e16d_1662_40bd_b69d_f89b88bcd7e5","name":"nametrigger","type":null,"is_active":true,"bodycreate":"DROP TRIGGER IF EXISTS c_setname\nON public.c_objectwithoutname__d2b79cb0_6ad5_4e7d_9fda_99b4941d4b8a;\n\nDROP FUNCTION IF EXISTS c_setnamefunction();\n\nCREATE OR REPLACE FUNCTION public.c_setnamefunction()\nRETURNS TRIGGER set search_path = '' AS $$\nBEGIN\n    IF (TG_OP = 'INSERT') THEN\n        NEW.name := NOW();\n    ELSIF (TG_OP = 'UPDATE') THEN\n        IF((OLD.name <> NEW.name)) THEN\n            raise exception 'NAME CANNOT BE UDPATED';\n        END IF;\n    END IF;\n\n    RETURN NEW;\nEND;\n$$ LANGUAGE plpgsql;\n\nCREATE TRIGGER c_setname\nBEFORE INSERT OR UPDATE ON public.c_objectwithoutname__d2b79cb0_6ad5_4e7d_9fda_99b4941d4b8a\nFOR EACH ROW\nEXECUTE FUNCTION public.c_setnamefunction();","bodyupdate":"DROP TRIGGER IF EXISTS c_setname\nON public.c_objectwithoutname__d2b79cb0_6ad5_4e7d_9fda_99b4941d4b8a;\n\nDROP FUNCTION IF EXISTS c_setnamefunction();\n\nCREATE OR REPLACE FUNCTION public.c_setnamefunction()\nRETURNS TRIGGER set search_path = '' AS $$\nBEGIN\n    IF (TG_OP = 'INSERT') THEN\n        NEW.name := NOW();\n    ELSIF (TG_OP = 'UPDATE') THEN\n        IF((OLD.name <> NEW.name)) THEN\n            raise exception 'NAME CANNOT BE UDPATED';\n        END IF;\n    END IF;\n\n    RETURN NEW;\nEND;\n$$ LANGUAGE plpgsql;\n\nCREATE TRIGGER c_setname\nBEFORE INSERT OR UPDATE ON public.c_objectwithoutname__d2b79cb0_6ad5_4e7d_9fda_99b4941d4b8a\nFOR EACH ROW\nEXECUTE FUNCTION public.c_setnamefunction();","bodydelete":"DROP TRIGGER IF EXISTS c_setname\nON public.c_objectwithoutname__d2b79cb0_6ad5_4e7d_9fda_99b4941d4b8a;\n\nDROP FUNCTION IF EXISTS c_setnamefunction();"}]}

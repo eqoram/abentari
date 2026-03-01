@@ -1,0 +1,5 @@
+PRUNSCRIPT=yes PSUPABASEURL=supabaseurl PSUPABASEKEY=supabasekey node src/helpers/zmigration/zmigration.js
+
+INSERT INTO public.zconfig (name, value, is_active) VALUES ('migrationurl','yourdomain.com/zmigrations/', true);
+select public.run_remote_migrations_http();
+for f in supabase/migrations/*.sql; do echo "-- $(basename "$f")"; cat "$f"; echo; done | tee public/utils/everything/everything.sql > /dev/null && ls supabase/migrations/*.sql | xargs -n 1 basename | perl -pe 's/(.*)\n/"$1",/' | perl -0777 -pe 's/,$//; $_ = "[$_]"' > public/zmigrations/index.json && cp supabase/migrations/*.sql public/zmigrations/

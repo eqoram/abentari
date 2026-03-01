@@ -1,0 +1,30 @@
+#exclude ids: 
+abfe9125-deb6-4d0f-8bc5-9d2d0700f413;3fa00d30-52e3-414b-9fbe-c6a2cc6b1638;fd097deb-93da-45bc-b8a9-79e3bac670c4;03b07e91-bc04-4563-a080-ee8bce371c13
+
+
+#sql:
+DROP TRIGGER IF EXISTS c_contacts_trigger_check_email_at
+ON public.c_contacts__1d76ecb9_bd91_474f_80b8_6e22a7e81403;
+
+DROP FUNCTION IF EXISTS c_contacts_function_check_email_contains_at();
+
+CREATE OR REPLACE FUNCTION public.c_contacts_function_check_email_contains_at()
+RETURNS TRIGGER set search_path = '' AS $$
+BEGIN
+    IF NEW.c_email__35adbffb_5252_4bf2_98a9_5c29aa29d5a9 NOT LIKE '%@%' THEN
+        RAISE EXCEPTION 'Invalid email: "%" must contain @',
+            NEW.c_email__35adbffb_5252_4bf2_98a9_5c29aa29d5a9;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER c_contacts_trigger_check_email_at
+BEFORE INSERT OR UPDATE ON public.c_contacts__1d76ecb9_bd91_474f_80b8_6e22a7e81403
+FOR EACH ROW
+EXECUTE FUNCTION public.c_contacts_function_check_email_contains_at();
+
+
+#deploy:
+{"objects":[{"id":"4cf4d8e8-2f7c-4a02-b8d0-10f181056b5a","created_at":"2025-11-14T13:08:08.70888+00:00","created_by":"fb8c46c5-7980-40b7-a92e-6aa5ede1706d","modified_at":"2025-11-14T13:16:50.074114+00:00","modified_by":"fb8c46c5-7980-40b7-a92e-6aa5ede1706d","description":null,"api_name":"c_accounts__4cf4d8e8_2f7c_4a02_b8d0_10f181056b5a","name":"accounts","fields_selected":[],"show_id":true,"show_createdby":false,"show_createdat":false,"show_modifiedby":false,"show_modifiedat":false,"show_owner":false,"relations":["1614d26b-0919-48ff-87b5-aa3d75624bc4"],"history":true},{"id":"1d76ecb9-bd91-474f-80b8-6e22a7e81403","created_at":"2025-11-14T13:08:17.088901+00:00","created_by":"fb8c46c5-7980-40b7-a92e-6aa5ede1706d","modified_at":"2025-11-14T13:16:52.890908+00:00","modified_by":"fb8c46c5-7980-40b7-a92e-6aa5ede1706d","description":null,"api_name":"c_contacts__1d76ecb9_bd91_474f_80b8_6e22a7e81403","name":"contacts","fields_selected":["35adbffb-5252-4bf2-98a9-5c29aa29d5a9","1614d26b-0919-48ff-87b5-aa3d75624bc4"],"show_id":true,"show_createdby":false,"show_createdat":false,"show_modifiedby":false,"show_modifiedat":false,"show_owner":false,"relations":null,"history":true}],"fields":[{"id":"1614d26b-0919-48ff-87b5-aa3d75624bc4","created_at":"2025-11-14T13:09:30.189686+00:00","created_by":"fb8c46c5-7980-40b7-a92e-6aa5ede1706d","modified_at":"2025-11-14T13:09:30.189686+00:00","modified_by":"fb8c46c5-7980-40b7-a92e-6aa5ede1706d","description":null,"api_name":"c_accountrelation__1614d26b_0919_48ff_87b5_aa3d75624bc4","name":"Account Relation","required":true,"type":"relation","relationname":"contacts","relation_id":"4cf4d8e8-2f7c-4a02-b8d0-10f181056b5a","relation_apiname":"c_accounts__4cf4d8e8_2f7c_4a02_b8d0_10f181056b5a","picklist_values":null,"parent_id":"1d76ecb9-bd91-474f-80b8-6e22a7e81403","parent_apiname":"c_contacts__1d76ecb9_bd91_474f_80b8_6e22a7e81403","display":"","is_standard":false},{"id":"35adbffb-5252-4bf2-98a9-5c29aa29d5a9","created_at":"2025-11-14T13:16:01.509643+00:00","created_by":"fb8c46c5-7980-40b7-a92e-6aa5ede1706d","modified_at":"2025-11-14T13:16:01.509643+00:00","modified_by":"fb8c46c5-7980-40b7-a92e-6aa5ede1706d","description":null,"api_name":"c_email__35adbffb_5252_4bf2_98a9_5c29aa29d5a9","name":"Email","required":true,"type":"text","relationname":null,"relation_id":null,"relation_apiname":null,"picklist_values":null,"parent_id":"1d76ecb9-bd91-474f-80b8-6e22a7e81403","parent_apiname":"c_contacts__1d76ecb9_bd91_474f_80b8_6e22a7e81403","display":"","is_standard":false}],"csql":[{"id":"c322353b-6d34-4afc-963b-c08911dfff8d","created_at":"2025-11-14T13:37:24.635118+00:00","created_by":"fb8c46c5-7980-40b7-a92e-6aa5ede1706d","modified_at":null,"modified_by":null,"description":null,"api_name":"c_contactemailatsymbol__c322353b_6d34_4afc_963b_c08911dfff8d","name":"Contact: Email should include @ symbol","type":null,"is_active":true,"bodycreate":"CREATE OR REPLACE FUNCTION public.c_contacts_function_check_email_contains_at()\nRETURNS TRIGGER set search_path = '' AS $$\nBEGIN\n    IF NEW.c_email__35adbffb_5252_4bf2_98a9_5c29aa29d5a9 NOT LIKE '%@%' THEN\n        RAISE EXCEPTION 'Invalid email: \"%\" must contain @',\n            NEW.c_email__35adbffb_5252_4bf2_98a9_5c29aa29d5a9;\n    END IF;\n\n    RETURN NEW;\nEND;\n$$ LANGUAGE plpgsql;\n\nCREATE TRIGGER c_contacts_trigger_check_email_at\nBEFORE INSERT OR UPDATE ON public.c_contacts__1d76ecb9_bd91_474f_80b8_6e22a7e81403\nFOR EACH ROW\nEXECUTE FUNCTION public.c_contacts_function_check_email_contains_at();","bodyupdate":"DROP TRIGGER IF EXISTS c_contacts_trigger_check_email_at\nON public.c_contacts__1d76ecb9_bd91_474f_80b8_6e22a7e81403;\n\nDROP FUNCTION IF EXISTS c_contacts_function_check_email_contains_at();\n\n\n\nCREATE OR REPLACE FUNCTION public.c_contacts_function_check_email_contains_at()\nRETURNS TRIGGER set search_path = '' AS $$\nBEGIN\n    IF NEW.c_email__35adbffb_5252_4bf2_98a9_5c29aa29d5a9 NOT LIKE '%@%' THEN\n        RAISE EXCEPTION 'Invalid email: \"%\" must contain @',\n            NEW.c_email__35adbffb_5252_4bf2_98a9_5c29aa29d5a9;\n    END IF;\n\n    RETURN NEW;\nEND;\n$$ LANGUAGE plpgsql;\n\nCREATE TRIGGER c_contacts_trigger_check_email_at\nBEFORE INSERT OR UPDATE ON public.c_contacts__1d76ecb9_bd91_474f_80b8_6e22a7e81403\nFOR EACH ROW\nEXECUTE FUNCTION public.c_contacts_function_check_email_contains_at();","bodydelete":"DROP TRIGGER IF EXISTS c_contacts_trigger_check_email_at\nON public.c_contacts__1d76ecb9_bd91_474f_80b8_6e22a7e81403;\n\nDROP FUNCTION IF EXISTS c_contacts_function_check_email_contains_at();"}]}

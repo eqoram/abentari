@@ -1,0 +1,6 @@
+# Supabase
+.branches
+.temp
+.env
+/seeds/seeddev.sql
+/utils/everything/everything.sql

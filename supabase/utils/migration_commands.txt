@@ -1,0 +1,1 @@
+for f in supabase/migrations/*.sql; do echo "-- $(basename "$f")"; cat "$f"; echo; done | tee supabase/utils/everything/everything.sql > /dev/null

@@ -1,0 +1,1 @@
+PDEBUG=yes PRUNSCRIPT=yes PBUCKET=storage1 PBATCHSIZE=2 PDELAY=1000 PDELETE=no PSUPABASEURL=http://127.0.0.1:54321 PSUPABASEKEY=sb_publishable_ACJWlzQHlZjBrEguHvfOxg_3BJgxAaH PSUPABASEUSERNAME=pw_admin@abentari.invalid PSUPABASEPASSWORD=7V2ZN1GHlbag6zo8ZvuZ node src/helpers/filedeletion/filedeletion.js

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Private Supabase Image</title>
+    <script>
+      const SUPABASE_URL = 'http://127.0.0.1:54321';
+      const BUCKET = 'storage1';
+      const FILE_PATH =
+        'objects/c_atestwheels__42906140_4339_44a3_8c98_8740e6c98624/c_atestfile__9150c7a1_58d2_4121_bb29_4c8eda3f20ad/4ba98607-d109-449c-9773-250c592e4069/d8454982-2cb1-4782-97d7-8caa6d7f1e9b';
+      const ANON_KEY = 'sb_publishable_ACJWlzQHlZjBrEguHvfOxg_3BJgxAaH';
+
+      async function loadImage() {
+        const res = await fetch(`${SUPABASE_URL}/storage/v1/object/${BUCKET}/${FILE_PATH}`, {
+          headers: {
+            Authorization: `Bearer ${ANON_KEY}`,
+          },
+        });
+
+        if (!res.ok) {
+          throw new Error(`Failed to load image: ${res.status}`);
+        }
+
+        const blob = await res.blob();
+        const objectUrl = URL.createObjectURL(blob);
+
+        const img = document.getElementById('image');
+        img.src = objectUrl;
+      }
+
+      loadImage().catch(console.error);
+    </script>
+  </head>
+  <body>
+    <img id="image" alt="Trying to load image ..." width="300" />
+
+    <script src="image.js"></script>
+  </body>
+</html>

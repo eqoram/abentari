@@ -1,0 +1,6 @@
+-- SET LOCAL session_replication_role = replica;
+-- INSERT INTO public.xusers (id, profile_id, invite_email, invite_secret, invite_open, is_active, is_public, is_unauthenticated, skip_puser, is_superuser, created_by)
+-- VALUES ('4ba98607-d109-449c-9773-250c592e4069'::uuid, (SELECT id FROM public.profiles WHERE api_name = 'admin'), '{{admincontactemail}}', '{{gen_random_uuid()}}' , true, true, false, false, true, true, '11111111-1111-1111-1111-111111111111');
+-- INSERT INTO public.c_pusers__abfe9125_deb6_4d0f_8bc5_9d2d0700f413 (name, email, user_id, xuser_id, owner_id, created_by)
+-- VALUES ('ADMIN', '{{admincontactemail}}', null, '4ba98607-d109-449c-9773-250c592e4069', '4ba98607-d109-449c-9773-250c592e4069', '11111111-1111-1111-1111-111111111111');
+-- SET LOCAL session_replication_role = DEFAULT;

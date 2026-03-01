@@ -1,0 +1,4 @@
+supabase start
+supabase stop
+supabase db reset
+supabase db diff -f migrationname (first run supabase stop)

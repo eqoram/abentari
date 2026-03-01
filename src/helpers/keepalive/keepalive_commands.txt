@@ -1,0 +1,1 @@
+PRUNSCRIPT=yes PSUPABASEURL=http://127.0.0.1:54321 PSUPABASEKEY=sb_publishable_ACJWlzQHlZjBrEguHvfOxg_3BJgxAaH node src/helpers/keepalive/keepalive.js
