@@ -87,7 +87,7 @@ export default defineComponent({
 
     const lversion = ref('');
     function checkVersion() {
-      console.log('version: 0.0.382');
+      console.log('version: 0.1.1');
       fetch(window.location.origin + '/version.json?' + Date.now())
         .then((serverPromise) =>
           serverPromise.json().then((response) => {
