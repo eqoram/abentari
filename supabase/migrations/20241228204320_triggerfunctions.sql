@@ -114,6 +114,10 @@ begin
     ) tablespace pg_default;', NEW.api_name, NEW.api_name);
     EXECUTE format('ALTER TABLE public.%I ENABLE ROW LEVEL SECURITY;', NEW.api_name);
 
+    EXECUTE format('grant select, insert, update, delete on public.%I to anon;', NEW.api_name);
+    EXECUTE format('grant select, insert, update, delete on public.%I to authenticated;', NEW.api_name);
+    EXECUTE format('grant select, insert, update, delete on public.%I to service_role;', NEW.api_name);
+
     EXECUTE format('create index %I on public.%I USING GIN (search);', CONCAT(NEW.api_name, '_search'), NEW.api_name);
 
     -- SELECT
@@ -1919,6 +1923,10 @@ begin
             constraint %I_pk primary key (id)
         ) tablespace pg_default;', NEW.api_name ,NEW.api_name );
         EXECUTE format('ALTER TABLE public.%I ENABLE ROW LEVEL SECURITY;', NEW.api_name );
+
+        EXECUTE format('grant select, insert, update, delete on public.%I to anon;', NEW.api_name);
+        EXECUTE format('grant select, insert, update, delete on public.%I to authenticated;', NEW.api_name);
+        EXECUTE format('grant select, insert, update, delete on public.%I to service_role;', NEW.api_name);
 
 
         -- EXECUTE format(

@@ -1033,7 +1033,7 @@
           </q-item-label> -->
           <q-item-label style="white-space: normal; word-break: break-word">
             <span>{{ lenvironment + ' - ' }}</span
-            >0.1.2
+            >0.1.3-T110
           </q-item-label>
         </q-item-section>
       </q-item>
