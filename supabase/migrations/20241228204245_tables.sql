@@ -24,6 +24,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.profiles to anon;
+grant select, insert, update, delete on public.profiles to authenticated;
+grant select, insert, update, delete on public.profiles to service_role;
+
 create index profiles_search on public.profiles USING GIN (search);
 create index profiles_created_at on public.profiles (created_at);
 create index profiles_name on public.profiles (name);
@@ -53,6 +57,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.xusers ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.xusers to anon;
+grant select, insert, update, delete on public.xusers to authenticated;
+grant select, insert, update, delete on public.xusers to service_role;
+
 create index xusers_search on public.xusers USING GIN (search);
 create index xusers_invite_email on public.xusers (invite_email);
 create index xusers_user_id on public.xusers (user_id);
@@ -75,6 +83,10 @@ create table
     UNIQUE (profile_id, permission)
   ) tablespace pg_default;
 ALTER TABLE public.permissions ENABLE ROW LEVEL SECURITY;
+
+grant select, insert, update, delete on public.permissions to anon;
+grant select, insert, update, delete on public.permissions to authenticated;
+grant select, insert, update, delete on public.permissions to service_role;
 
 create index permissions_search on public.permissions USING GIN (search);
 create index permissions_created_at on public.permissions (created_at);
@@ -118,6 +130,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.objects ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.objects to anon;
+grant select, insert, update, delete on public.objects to authenticated;
+grant select, insert, update, delete on public.objects to service_role;
+
 create index objects_search on public.objects USING GIN (search);
 create index objects_created_at on public.objects (created_at);
 create index objects_name on public.objects (name);
@@ -154,6 +170,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.fields ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.fields to anon;
+grant select, insert, update, delete on public.fields to authenticated;
+grant select, insert, update, delete on public.fields to service_role;
+
 create index fields_search on public.fields USING GIN (search);
 create index fields_created_at on public.fields (created_at);
 create index fields_name on public.fields (name);
@@ -175,22 +195,13 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.permissionoptions ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.permissionoptions to anon;
+grant select, insert, update, delete on public.permissionoptions to authenticated;
+grant select, insert, update, delete on public.permissionoptions to service_role;
+
 create index permissionoptions_search on public.permissionoptions USING GIN (search);
 create index permissionoptions_created_at on public.permissionoptions (created_at);
 create index permissionoptions_name on public.permissionoptions (name);
-
-
--- create table
---   public.c_pusers__abfe9125_deb6_4d0f_8bc5_9d2d0700f413 (
---     id uuid not null default gen_random_uuid (),
---     created_at timestamp with time zone not null default now(),
---     name text not null,
---     user_id uuid not null,
---     email text not null UNIQUE,
---     constraint c_pusers__abfe9125_deb6_4d0f_8bc5_9d2d0700f413_pk primary key (id)
---   ) tablespace pg_default;
-
--- ALTER TABLE public.c_pusers__abfe9125_deb6_4d0f_8bc5_9d2d0700f413 ENABLE ROW LEVEL SECURITY;
 
 
 create table
@@ -205,6 +216,10 @@ create table
     constraint i_fields_pkey primary key (id)
   ) tablespace pg_default;
 ALTER TABLE public.i_fields ENABLE ROW LEVEL SECURITY;
+
+grant select, insert, update, delete on public.i_fields to anon;
+grant select, insert, update, delete on public.i_fields to authenticated;
+grant select, insert, update, delete on public.i_fields to service_role;
 
 create index i_fields_changed_at on public.i_fields (changed_at);
 create index i_fields_parent_id on public.i_fields (parent_id);
@@ -223,6 +238,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.i_objects ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.i_objects to anon;
+grant select, insert, update, delete on public.i_objects to authenticated;
+grant select, insert, update, delete on public.i_objects to service_role;
+
 create index i_objects_changed_at on public.i_objects (changed_at);
 create index i_objects_parent_id on public.i_objects (parent_id);
 
@@ -239,6 +258,10 @@ create table
     constraint i_permissionoptions_pkey primary key (id)
   ) tablespace pg_default;
 ALTER TABLE public.i_permissionoptions ENABLE ROW LEVEL SECURITY;
+
+grant select, insert, update, delete on public.i_permissionoptions to anon;
+grant select, insert, update, delete on public.i_permissionoptions to authenticated;
+grant select, insert, update, delete on public.i_permissionoptions to service_role;
 
 create index i_permissionoptions_changed_at on public.i_permissionoptions (changed_at);
 create index i_permissionoptions_parent_id on public.i_permissionoptions (parent_id);
@@ -257,6 +280,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.i_permissions ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.i_permissions to anon;
+grant select, insert, update, delete on public.i_permissions to authenticated;
+grant select, insert, update, delete on public.i_permissions to service_role;
+
 create index i_permissions_changed_at on public.i_permissions (changed_at);
 create index i_permissions_parent_id on public.i_permissions (parent_id);
 
@@ -273,6 +300,10 @@ create table
     constraint i_profiles_pkey primary key (id)
   ) tablespace pg_default;
 ALTER TABLE public.i_profiles ENABLE ROW LEVEL SECURITY;
+
+grant select, insert, update, delete on public.i_profiles to anon;
+grant select, insert, update, delete on public.i_profiles to authenticated;
+grant select, insert, update, delete on public.i_profiles to service_role;
 
 create index i_profiles_changed_at on public.i_profiles (changed_at);
 create index i_profiles_parent_id on public.i_profiles (parent_id);
@@ -291,6 +322,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.i_xusers ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.i_xusers to anon;
+grant select, insert, update, delete on public.i_xusers to authenticated;
+grant select, insert, update, delete on public.i_xusers to service_role;
+
 create index i_xusers_changed_at on public.i_xusers (changed_at);
 create index i_xusers_parent_id on public.i_xusers (parent_id);
 
@@ -303,6 +338,10 @@ create table
     constraint keepalive_pkey primary key (id)
   ) tablespace pg_default;
 ALTER TABLE public.keepalive ENABLE ROW LEVEL SECURITY;
+
+grant select, insert, update, delete on public.keepalive to anon;
+grant select, insert, update, delete on public.keepalive to authenticated;
+grant select, insert, update, delete on public.keepalive to service_role;
 
 
 create table
@@ -328,6 +367,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.settings ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.settings to anon;
+grant select, insert, update, delete on public.settings to authenticated;
+grant select, insert, update, delete on public.settings to service_role;
+
 create index settings_search on public.settings USING GIN (search);
 create index settings_created_at on public.settings (created_at);
 create index settings_name on public.settings (name);
@@ -345,6 +388,10 @@ create table
     constraint i_settings_pkey primary key (id)
   ) tablespace pg_default;
 ALTER TABLE public.i_settings ENABLE ROW LEVEL SECURITY;
+
+grant select, insert, update, delete on public.i_settings to anon;
+grant select, insert, update, delete on public.i_settings to authenticated;
+grant select, insert, update, delete on public.i_settings to service_role;
 
 create index i_settings_changed_at on public.i_settings (changed_at);
 create index i_settings_parent_id on public.i_settings (parent_id);
@@ -374,6 +421,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.csql ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.csql to anon;
+grant select, insert, update, delete on public.csql to authenticated;
+grant select, insert, update, delete on public.csql to service_role;
+
 create index csql_search on public.csql USING GIN (search);
 create index csql_created_at on public.csql (created_at);
 create index csql_name on public.csql (name);
@@ -391,6 +442,10 @@ create table
     constraint i_csql_pkey primary key (id)
   ) tablespace pg_default;
 ALTER TABLE public.i_csql ENABLE ROW LEVEL SECURITY;
+
+grant select, insert, update, delete on public.i_csql to anon;
+grant select, insert, update, delete on public.i_csql to authenticated;
+grant select, insert, update, delete on public.i_csql to service_role;
 
 create index i_csql_changed_at on public.i_csql (changed_at);
 create index i_csql_parent_id on public.i_csql (parent_id);
@@ -419,6 +474,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.pages ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.pages to anon;
+grant select, insert, update, delete on public.pages to authenticated;
+grant select, insert, update, delete on public.pages to service_role;
+
 create index pages_search on public.pages USING GIN (search);
 create index pages_created_at on public.pages (created_at);
 create index pages_name on public.pages (name);
@@ -436,6 +495,10 @@ create table
     constraint i_pages_pkey primary key (id)
   ) tablespace pg_default;
 ALTER TABLE public.i_pages ENABLE ROW LEVEL SECURITY;
+
+grant select, insert, update, delete on public.i_pages to anon;
+grant select, insert, update, delete on public.i_pages to authenticated;
+grant select, insert, update, delete on public.i_pages to service_role;
 
 create index i_pages_changed_at on public.i_pages (changed_at);
 create index i_pages_parent_id on public.i_pages (parent_id);
@@ -461,6 +524,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.cpermissions ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.cpermissions to anon;
+grant select, insert, update, delete on public.cpermissions to authenticated;
+grant select, insert, update, delete on public.cpermissions to service_role;
+
 create index cpermissions_search on public.cpermissions USING GIN (search);
 create index cpermissions_created_at on public.cpermissions (created_at);
 create index cpermissions_name on public.cpermissions (name);
@@ -478,6 +545,10 @@ create table
     constraint i_cpermissions_pkey primary key (id)
   ) tablespace pg_default;
 ALTER TABLE public.i_cpermissions ENABLE ROW LEVEL SECURITY;
+
+grant select, insert, update, delete on public.i_cpermissions to anon;
+grant select, insert, update, delete on public.i_cpermissions to authenticated;
+grant select, insert, update, delete on public.i_cpermissions to service_role;
 
 create index i_cpermissions_changed_at on public.i_cpermissions (changed_at);
 create index i_cpermissions_parent_id on public.i_cpermissions (parent_id);
@@ -507,6 +578,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.actions ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.actions to anon;
+grant select, insert, update, delete on public.actions to authenticated;
+grant select, insert, update, delete on public.actions to service_role;
+
 create index actions_search on public.actions USING GIN (search);
 create index actions_created_at on public.actions (created_at);
 create index actions_name on public.actions (name);
@@ -524,6 +599,10 @@ create table
     constraint i_actions_pkey primary key (id)
   ) tablespace pg_default;
 ALTER TABLE public.i_actions ENABLE ROW LEVEL SECURITY;
+
+grant select, insert, update, delete on public.i_actions to anon;
+grant select, insert, update, delete on public.i_actions to authenticated;
+grant select, insert, update, delete on public.i_actions to service_role;
 
 create index i_actions_changed_at on public.i_actions (changed_at);
 create index i_actions_parent_id on public.i_actions (parent_id);
@@ -547,6 +626,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.appoptions ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.appoptions to anon;
+grant select, insert, update, delete on public.appoptions to authenticated;
+grant select, insert, update, delete on public.appoptions to service_role;
+
 create index appoptions_search on public.appoptions USING GIN (search);
 create index appoptions_created_at on public.appoptions (created_at);
 create index appoptions_name on public.appoptions (name);
@@ -566,6 +649,10 @@ create table
     constraint i_appoptions_pkey primary key (id)
   ) tablespace pg_default;
 ALTER TABLE public.i_appoptions ENABLE ROW LEVEL SECURITY;
+
+grant select, insert, update, delete on public.i_appoptions to anon;
+grant select, insert, update, delete on public.i_appoptions to authenticated;
+grant select, insert, update, delete on public.i_appoptions to service_role;
 
 create index i_appoptions_changed_at on public.i_appoptions (changed_at);
 create index i_appoptions_parent_id on public.i_appoptions (parent_id);
@@ -593,6 +680,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.apps ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.apps to anon;
+grant select, insert, update, delete on public.apps to authenticated;
+grant select, insert, update, delete on public.apps to service_role;
+
 create index apps_search on public.apps USING GIN (search);
 create index apps_created_at on public.apps (created_at);
 create index apps_name on public.apps (name);
@@ -611,6 +702,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.i_apps ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.i_apps to anon;
+grant select, insert, update, delete on public.i_apps to authenticated;
+grant select, insert, update, delete on public.i_apps to service_role;
+
 create index i_apps_changed_at on public.i_apps (changed_at);
 create index i_apps_parent_id on public.i_apps (parent_id);
 
@@ -627,6 +722,10 @@ create table
     constraint i_run_pkey primary key (id)
   ) tablespace pg_default;
 ALTER TABLE public.i_run ENABLE ROW LEVEL SECURITY;
+
+grant select, insert, update, delete on public.i_run to anon;
+grant select, insert, update, delete on public.i_run to authenticated;
+grant select, insert, update, delete on public.i_run to service_role;
 
 create index i_run_changed_at on public.i_run (changed_at);
 create index i_run_parent_id on public.i_run (parent_id);
@@ -651,6 +750,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.objecthistories ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.objecthistories to anon;
+grant select, insert, update, delete on public.objecthistories to authenticated;
+grant select, insert, update, delete on public.objecthistories to service_role;
+
 create index objecthistories_search on public.objecthistories USING GIN (search);
 create index objecthistories_created_at on public.objecthistories (created_at);
 create index objecthistories_name on public.objecthistories (name);
@@ -669,6 +772,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.i_objecthistories ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.i_objecthistories to anon;
+grant select, insert, update, delete on public.i_objecthistories to authenticated;
+grant select, insert, update, delete on public.i_objecthistories to service_role;
+
 create index i_objecthistories_changed_at on public.i_objecthistories (changed_at);
 create index i_objecthistories_parent_id on public.i_objecthistories (parent_id);
 
@@ -685,6 +792,10 @@ create table
     constraint i_retrieve_pkey primary key (id)
   ) tablespace pg_default;
 ALTER TABLE public.i_retrieve ENABLE ROW LEVEL SECURITY;
+
+grant select, insert, update, delete on public.i_retrieve to anon;
+grant select, insert, update, delete on public.i_retrieve to authenticated;
+grant select, insert, update, delete on public.i_retrieve to service_role;
 
 create index i_retrieve_changed_at on public.i_retrieve (changed_at);
 create index i_retrieve_parent_id on public.i_retrieve (parent_id);
@@ -703,6 +814,10 @@ create table
   ) tablespace pg_default;
 ALTER TABLE public.i_deploy ENABLE ROW LEVEL SECURITY;
 
+grant select, insert, update, delete on public.i_deploy to anon;
+grant select, insert, update, delete on public.i_deploy to authenticated;
+grant select, insert, update, delete on public.i_deploy to service_role;
+
 create index i_deploy_changed_at on public.i_deploy (changed_at);
 create index i_deploy_parent_id on public.i_deploy (parent_id);
 
@@ -713,6 +828,10 @@ create table
     constraint testtable_pkey primary key (id)
   ) tablespace pg_default;
 ALTER TABLE public.testtable ENABLE ROW LEVEL SECURITY;
+
+grant select, insert, update, delete on public.testtable to anon;
+grant select, insert, update, delete on public.testtable to authenticated;
+grant select, insert, update, delete on public.testtable to service_role;
 
 -- create table
 --   public.zmigrations (
@@ -725,6 +844,10 @@ ALTER TABLE public.testtable ENABLE ROW LEVEL SECURITY;
 --     constraint zmigrations_pkey primary key (id)
 --   ) tablespace pg_default;
 -- ALTER TABLE public.zmigrations ENABLE ROW LEVEL SECURITY;
+
+-- grant select, insert, update, delete on public.zmigrations to anon;
+-- grant select, insert, update, delete on public.zmigrations to authenticated;
+-- grant select, insert, update, delete on public.zmigrations to service_role;
 
 -- create table
 --   public.zconfig (
@@ -739,3 +862,7 @@ ALTER TABLE public.testtable ENABLE ROW LEVEL SECURITY;
 --     constraint zconfig_pkey primary key (id)
 --   ) tablespace pg_default;
 -- ALTER TABLE public.zconfig ENABLE ROW LEVEL SECURITY;
+
+-- grant select, insert, update, delete on public.zconfig to anon;
+-- grant select, insert, update, delete on public.zconfig to authenticated;
+-- grant select, insert, update, delete on public.zconfig to service_role;
