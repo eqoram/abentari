@@ -38,7 +38,7 @@ See the feature list below to get a better feeling what abentari. is capable of.
   - Track any kind of changes to the data of these objects
 - fields
   - Create any number of fields within the objects to collect all information you need (text, picklist, relations, files, ...)
-  - Fields can then be added to the layout of the parent object
+  - Fields can be added to the layout of the parent object
 - profiles
   - Permission management to grant access to specific objects, apps, pages, actions, ...
   - Guest users also have a profile so you can share data publicly ("unauthenticated")
@@ -74,6 +74,11 @@ See the feature list below to get a better feeling what abentari. is capable of.
   - Easy permission management
   - Multi-factor authentication
 
+<br/>
+
+## Demo
+
+<video src="docs/videos/demo.mp4" controls width="700"></video>
 <br/>
 
 ## Installation
