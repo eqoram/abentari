@@ -78,7 +78,7 @@ See the feature list below to get a better feeling what abentari. is capable of.
 
 ## Demo
 
-<video src="docs/videos/demo.mp4" controls width="700"></video>
+[![Demo Video](https://img.youtube.com/vi/5JOuLHFCYbs/0.jpg)](https://www.youtube.com/watch?v=5JOuLHFCYbs)
 <br/>
 
 ## Installation
