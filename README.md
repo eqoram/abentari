@@ -83,7 +83,11 @@ See the feature list below to get a better feeling what abentari. is capable of.
 
 ## Installation
 
-### 1. Initialise Supabase
+### 1. Clone repository
+
+Clone repository (git clone https://github.com/eqoram/abentari.git)
+
+### 2. Initialise Supabase
 
 1. Create Supabase projects (Cloud or self-hosted)
 
@@ -144,7 +148,7 @@ using (
 );
 ```
 
-### 2. Install Quasar and build the app for production
+### 3. Install Quasar and build the app for production
 
 This step can be skipped when your deployment platform in step 3 is able to build the app for you. In both cases adjust the environment variables.
 
@@ -166,11 +170,11 @@ OR
 PSUPABASE='yes' PSUPABASEENVIRONMENT='{{environmentname (for example dev, qa, pre, hotfix, main)}}' PSUPABASELINK='{{supabaselink}}' PSUPABASEKEY='{{supabasekey}}' npx quasar build -m pwa
 ```
 
-### 3. Deploy the app for production
+### 4. Deploy the app for production
 
 Deploy it on a deployment platform like Cloudflare or Vercel.
 
-### 4. Sign up with admin account
+### 5. Sign up with admin account
 
 Lastly navigate to the deployed app https://yourdomain.com/#/main/login/ and sign up with the set email and secret from above and a random password. Enjoy!
 
