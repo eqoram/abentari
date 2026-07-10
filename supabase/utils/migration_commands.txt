@@ -1,1 +1,1 @@
-for f in supabase/migrations/*.sql; do echo "-- $(basename "$f")"; cat "$f"; echo; done | tee supabase/utils/everything/everything.sql > /dev/null
+for f in supabase/migrations/*.sql; do echo "-- $(basename "$f")"; cat "$f"; echo; done | (mkdir -p supabase/utils/everything && tee supabase/utils/everything/everything.sql > /dev/null)
